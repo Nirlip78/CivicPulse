@@ -1,0 +1,7 @@
+# Optional, local-only multilingual adapters. Install only the adapter needed;
+# model weights are deliberately not downloaded by this project at runtime.
+torch>=2.5,<3
+fasttext>=0.9.2
+sentence-transformers>=3,<5
+ctranslate2>=4,<5
+transformers>=4.45,<6

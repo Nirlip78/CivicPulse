@@ -1,0 +1,11 @@
+﻿dataset_name,path,records_or_pairs,language,labels_or_structure,recommended_use,limitations
+civic_complaints_labeled.csv,processed/civic_complaints/civic_complaints_labeled.csv,120,English/Hindi,"6 categories: electricity, healthcare, ration_aadhar, roads_transport, sanitation, water_supply",Primary small civic complaint category benchmark; transcript metadata,Provenance/synthetic status not established; metadata references MP3s not included
+hindi_sentiment_train.csv,processed/sentiment/hindi_sentiment_train.csv,4182,Hindi (Devanagari),negative/neutral/positive,Hindi sentiment training,General-domain; retain original split
+hindi_sentiment_validation.csv,processed/sentiment/hindi_sentiment_validation.csv,523,Hindi (Devanagari),negative/neutral/positive,Hindi sentiment validation,General-domain; retain original split
+hindi_sentiment_test.csv,processed/sentiment/hindi_sentiment_test.csv,523,Hindi (Devanagari),negative/neutral/positive,Hindi sentiment test,General-domain; retain original split
+hinglish_sentiment.csv,processed/sentiment/hinglish_sentiment.csv,2766,Romanised Hindi/Hinglish/mixed,negative/neutral/positive; numeric label also supplied,Supplementary Hinglish sentiment experiment,General-domain and noisy/mixed text; inspect before using as civic data
+hiner_train.json,raw/ner/hiner_train.json,75827,Hindi,BIO tags; mapping in raw/ner/labels.json,NER training,JSON tokens and ner_tags; verify dataset provenance and tag mapping
+hiner_validation.json,raw/ner/hiner_validation.json,10851,Hindi,BIO tags; mapping in raw/ner/labels.json,NER validation,Keep split separate
+hiner_test.json,raw/ner/hiner_test.json,21657,Hindi,BIO tags; mapping in raw/ner/labels.json,NER test,Keep split separate
+parallel_dev.en + .hi,raw/translation/parallel_dev.en and parallel_dev.hi,520,English-Hindi,Line-aligned sentence pairs,Bilingual preprocessing/alignment and validation resource,No training split supplied
+parallel_test.en + .hi,raw/translation/parallel_test.en and parallel_test.hi,2507,English-Hindi,Line-aligned sentence pairs,Held-out bilingual evaluation only,Never train on this official test split

@@ -1,0 +1,17 @@
+.map { height: 480px; border-radius: .6rem; overflow: hidden; background: #e6f0ef; }
+.location-picker { margin: 1rem 0; }
+.location-picker p { margin: 0 0 .55rem; color: #24484d; }
+.picker-map { height: 300px; }
+.map-legend { display: flex; flex-wrap: wrap; gap: .45rem 1rem; margin: .8rem 0 0; color: #426568; font-size: .82rem; }
+.map-legend span { display: inline-flex; align-items: center; gap: .35rem; }
+.map-legend i { width: .7rem; height: .7rem; border-radius: 50%; display: inline-block; }
+.queue-category-dot { width: .65rem; height: .65rem; border-radius: 50%; display: inline-block; margin-right: .35rem; vertical-align: -.04rem; }
+.issue-popup { min-width: 190px; color: #24484d; }
+.issue-popup strong { font-size: .95rem; }
+.issue-popup p { margin: .35rem 0; line-height: 1.35; }
+.location-search { display: flex; gap: .6rem; margin: 0 0 .7rem; }
+.location-search input { margin: 0; }
+.location-search button { white-space: nowrap; }
+@media (max-width: 520px) {
+  .location-search { flex-direction: column; }
+}

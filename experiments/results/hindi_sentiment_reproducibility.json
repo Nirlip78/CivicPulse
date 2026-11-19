@@ -1,0 +1,153 @@
+{
+  "metadata": {
+    "experiment_name": "Hindi Sentiment Model Reproducibility and Compatibility Audit",
+    "timestamp": "2026-11-19T12:15:14.596694+00:00",
+    "environment": {
+      "python_version": "3.12.4",
+      "scikit_learn_version": "1.8.0",
+      "numpy_version": "2.4.4",
+      "scipy_version": "1.17.1",
+      "os": "Windows-11-10.0.26300-SP0"
+    },
+    "dataset": {
+      "name": "Hindi Sentiment Dataset",
+      "train_split": "hindi_sentiment_train.csv",
+      "train_samples": 4182,
+      "test_split": "hindi_sentiment_test.csv",
+      "test_samples": 523,
+      "classes": [
+        "negative",
+        "neutral",
+        "positive"
+      ],
+      "class_distribution_train": {
+        "negative": 567,
+        "neutral": 1789,
+        "positive": 1826
+      },
+      "class_distribution_test": {
+        "negative": 68,
+        "neutral": 214,
+        "positive": 241
+      }
+    }
+  },
+  "original_documented_baseline": {
+    "intended_scikit_learn_version": "1.6.0 (specified in requirements.txt)",
+    "feature_extraction": {
+      "vectorizer": "TfidfVectorizer",
+      "analyzer": "char_wb",
+      "ngram_range": [
+        3,
+        5
+      ],
+      "min_df": 2,
+      "sublinear_tf": true
+    },
+    "classifier": {
+      "algorithm": "LogisticRegression",
+      "solver": "liblinear",
+      "class_weight": "balanced",
+      "max_iter": 500,
+      "random_state": 42
+    },
+    "reported_metrics": {
+      "accuracy": 0.7285,
+      "macro_f1": 0.6848
+    },
+    "status_under_scikit_learn_1_8": "Rejected with ValueError: The liblinear solver does not support multiclass classification (n_classes >= 3)."
+  },
+  "reproduced_experiment_1_ovr_liblinear": {
+    "description": "Explicit One-vs-Rest wrapper around liblinear to emulate scikit-learn <= 1.6 implicit OvR behaviour",
+    "classifier": "OneVsRestClassifier(LogisticRegression(solver=\"liblinear\", class_weight=\"balanced\", max_iter=500, random_state=42))",
+    "accuracy": 0.7266,
+    "macro_f1": 0.6922,
+    "weighted_f1": 0.7316,
+    "confusion_matrix": [
+      [
+        46,
+        11,
+        11
+      ],
+      [
+        32,
+        153,
+        29
+      ],
+      [
+        16,
+        44,
+        181
+      ]
+    ],
+    "per_class": {
+      "negative": {
+        "precision": 0.4894,
+        "recall": 0.6765,
+        "f1_score": 0.5679,
+        "support": 68
+      },
+      "neutral": {
+        "precision": 0.7356,
+        "recall": 0.715,
+        "f1_score": 0.7251,
+        "support": 214
+      },
+      "positive": {
+        "precision": 0.819,
+        "recall": 0.751,
+        "f1_score": 0.7835,
+        "support": 241
+      }
+    }
+  },
+  "reproduced_experiment_2_lbfgs_multinomial": {
+    "description": "Modern scikit-learn standard multiclass solver (lbfgs) with cross-entropy loss",
+    "classifier": "LogisticRegression(solver=\"lbfgs\", class_weight=\"balanced\", max_iter=500, random_state=42)",
+    "accuracy": 0.7285,
+    "macro_f1": 0.6963,
+    "weighted_f1": 0.7346,
+    "confusion_matrix": [
+      [
+        49,
+        10,
+        9
+      ],
+      [
+        35,
+        150,
+        29
+      ],
+      [
+        18,
+        41,
+        182
+      ]
+    ],
+    "per_class": {
+      "negative": {
+        "precision": 0.4804,
+        "recall": 0.7206,
+        "f1_score": 0.5765,
+        "support": 68
+      },
+      "neutral": {
+        "precision": 0.7463,
+        "recall": 0.7009,
+        "f1_score": 0.7229,
+        "support": 214
+      },
+      "positive": {
+        "precision": 0.8273,
+        "recall": 0.7552,
+        "f1_score": 0.7896,
+        "support": 241
+      }
+    }
+  },
+  "comparison_and_conclusion": {
+    "accuracy_match": "LBFGS achieves exactly 0.7285 (72.85%), matching the documented accuracy metric.",
+    "macro_f1_comparison": "Documented Macro F1 was 0.6848. OvR Liblinear achieves 0.6922. LBFGS achieves 0.6963.",
+    "recommendation": "Use solver=\"lbfgs\" in backend/app/nlp/sentiment.py. It avoids the scikit-learn 1.8.0 liblinear multiclass deprecation error, preserves exact 72.85% test accuracy, improves Macro F1 to 0.6963, and eliminates third-party solver overhead."
+  }
+}

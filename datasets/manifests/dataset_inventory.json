@@ -1,0 +1,31 @@
+{
+  "source_archive": "Akshay_2.zip",
+  "inventory": {
+    "civic_complaint_metadata_rows": 120,
+    "hindi_sentiment": {
+      "train": 4182,
+      "validation": 523,
+      "test": 523
+    },
+    "hinglish_sentiment_rows": 2766,
+    "hindi_ner": {
+      "train": 75827,
+      "validation": 10851,
+      "test": 21657,
+      "bio_label_count": 23
+    },
+    "parallel_en_hi": {
+      "dev_pairs": 520,
+      "test_pairs": 2507,
+      "train_pairs_supplied": 0
+    }
+  },
+  "known_gaps": [
+    "No dedicated labelled civic urgency dataset",
+    "No labelled civic summarisation reference dataset",
+    "No English-Hinglish civic sentiment gold-standard dataset",
+    "No English-Hindi parallel training split",
+    "Audio files referenced in metadata are not included",
+    "Original publisher/licence details are not fully supplied"
+  ]
+}

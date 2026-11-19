@@ -1,0 +1,106 @@
+{
+  "model": "TF-IDF + Logistic Regression baseline",
+  "dataset": "civic_complaints_labeled.csv",
+  "split": "documented stratified 75/25 derived split; random_state=42",
+  "timestamp": "2026-11-19T12:29:06.167420+00:00",
+  "accuracy": 0.3333,
+  "macro_f1": 0.3088,
+  "weighted_f1": 0.3088,
+  "labels": [
+    "electricity",
+    "healthcare",
+    "ration_aadhar",
+    "roads_transport",
+    "sanitation",
+    "water_supply"
+  ],
+  "confusion_matrix": [
+    [
+      1,
+      0,
+      0,
+      2,
+      0,
+      2
+    ],
+    [
+      2,
+      2,
+      1,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      1,
+      3,
+      0,
+      0,
+      1
+    ],
+    [
+      1,
+      0,
+      0,
+      1,
+      1,
+      2
+    ],
+    [
+      0,
+      2,
+      0,
+      1,
+      0,
+      2
+    ],
+    [
+      1,
+      1,
+      0,
+      0,
+      0,
+      3
+    ]
+  ],
+  "per_class": {
+    "electricity": {
+      "precision": 0.2,
+      "recall": 0.2,
+      "f1": 0.2,
+      "support": 5.0
+    },
+    "healthcare": {
+      "precision": 0.3333,
+      "recall": 0.4,
+      "f1": 0.3636,
+      "support": 5.0
+    },
+    "ration_aadhar": {
+      "precision": 0.75,
+      "recall": 0.6,
+      "f1": 0.6667,
+      "support": 5.0
+    },
+    "roads_transport": {
+      "precision": 0.25,
+      "recall": 0.2,
+      "f1": 0.2222,
+      "support": 5.0
+    },
+    "sanitation": {
+      "precision": 0.0,
+      "recall": 0.0,
+      "f1": 0.0,
+      "support": 5.0
+    },
+    "water_supply": {
+      "precision": 0.3,
+      "recall": 0.6,
+      "f1": 0.4,
+      "support": 5.0
+    }
+  },
+  "limitations": "Small unverified-provenance dataset; use only as an academic baseline."
+}
